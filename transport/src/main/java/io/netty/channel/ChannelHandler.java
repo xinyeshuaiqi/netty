@@ -175,6 +175,7 @@ import java.lang.annotation.Target;
  * what fundamental differences they have, how they flow in a  pipeline,  and how to handle
  * the operation in your application.
  */
+//连接通道处理器
 public interface ChannelHandler {
 
     /**

@@ -53,9 +53,11 @@ public final class EchoServer {
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         final EchoServerHandler serverHandler = new EchoServerHandler();
         try {
+
+            //启动器
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup)
-             .channel(NioServerSocketChannel.class)
+             .channel(NioServerSocketChannel.class)  //通过反射创建channel
              .option(ChannelOption.SO_BACKLOG, 100)
              .handler(new LoggingHandler(LogLevel.INFO))
              .childHandler(new ChannelInitializer<SocketChannel>() {
@@ -72,6 +74,8 @@ public final class EchoServer {
 
             // Start the server.
             ChannelFuture f = b.bind(PORT).sync();
+            // f.addListener()
+            // 可以注册一个 ChannelFutureListener，当操作执行成功或者失败时，监听就会自动触发返回结果。
 
             // Wait until the server socket is closed.
             f.channel().closeFuture().sync();

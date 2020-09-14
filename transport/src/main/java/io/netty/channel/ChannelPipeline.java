@@ -219,6 +219,8 @@ import java.util.NoSuchElementException;
  * For example, you can insert an encryption handler when sensitive information is about to be exchanged, and remove it
  * after the exchange.
  */
+//逻辑链  一个数据或者事件可能会被多个 Handler 处理，
+//在这个过程中，数据或者事件经流 ChannelPipeline
 public interface ChannelPipeline
         extends ChannelInboundInvoker, ChannelOutboundInvoker, Iterable<Entry<String, ChannelHandler>> {
 
