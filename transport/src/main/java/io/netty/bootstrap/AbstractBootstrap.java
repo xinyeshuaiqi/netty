@@ -95,6 +95,7 @@ public abstract class AbstractBootstrap<B extends AbstractBootstrap<B, C>, C ext
         return self();
     }
 
+    //返回自己
     @SuppressWarnings("unchecked")
     private B self() {
         return (B) this;

@@ -73,6 +73,7 @@ public final class EchoServer {
              });
 
             // Start the server.
+            // 绑定端口，并同步等待成功，即启动服务端
             ChannelFuture f = b.bind(PORT).sync();
             // f.addListener()
             // 可以注册一个 ChannelFutureListener，当操作执行成功或者失败时，监听就会自动触发返回结果。
