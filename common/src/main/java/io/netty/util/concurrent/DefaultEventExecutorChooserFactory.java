@@ -61,13 +61,14 @@ public final class DefaultEventExecutorChooserFactory implements EventExecutorCh
         // Use a 'long' counter to avoid non-round-robin behaviour at the 32-bit overflow boundary.
         // The 64-bit long solves this by placing the overflow so far into the future, that no system
         // will encounter this in practice.
-        private final AtomicLong idx = new AtomicLong();
+        private final AtomicLong idx = new AtomicLong();  //维护自增序列
         private final EventExecutor[] executors;
 
         GenericEventExecutorChooser(EventExecutor[] executors) {
             this.executors = executors;
         }
 
+        //取模
         @Override
         public EventExecutor next() {
             return executors[(int) Math.abs(idx.getAndIncrement() % executors.length)];

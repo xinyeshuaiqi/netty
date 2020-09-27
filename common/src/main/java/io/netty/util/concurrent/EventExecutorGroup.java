@@ -22,6 +22,9 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
+ *
+ * EventExecutorGroup在类图中处于承上启下的位置，其上是Java原生的接口和类，其下是Netty新建的接口和类
+ *
  * The {@link EventExecutorGroup} is responsible for providing the {@link EventExecutor}'s to use
  * via its {@link #next()} method. Besides this, it is also responsible for handling their
  * life-cycle and allows shutting them down in a global fashion.
@@ -36,6 +39,8 @@ public interface EventExecutorGroup extends ScheduledExecutorService, Iterable<E
     boolean isShuttingDown();
 
     /**
+     * netty自定义Future
+     *
      * Shortcut method for {@link #shutdownGracefully(long, long, TimeUnit)} with sensible default values.
      *
      * @return the {@link #terminationFuture()}
@@ -79,6 +84,10 @@ public interface EventExecutorGroup extends ScheduledExecutorService, Iterable<E
     List<Runnable> shutdownNow();
 
     /**
+     * EventExecutorGroup 自身不执行任务，而是将任务 #submit(...) 或 #schedule(...)
+     * 给自己管理的 EventExecutor 的分组。至于提交给哪一个 EventExecutor ，
+     * 一般是通过 #next() 方法，选择一个 EventExecutor
+     *
      * Returns one of the {@link EventExecutor}s managed by this {@link EventExecutorGroup}.
      */
     EventExecutor next();
