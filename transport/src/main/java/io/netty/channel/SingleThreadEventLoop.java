@@ -80,7 +80,7 @@ public abstract class SingleThreadEventLoop extends SingleThreadEventExecutor im
     public ChannelFuture register(Channel channel) {
         return register(new DefaultChannelPromise(channel, this));
     }
-
+    //---注册逻辑---
     @Override
     public ChannelFuture register(final ChannelPromise promise) {
         ObjectUtil.checkNotNull(promise, "promise");

@@ -43,6 +43,8 @@ public class DefaultChannelPromise extends DefaultPromise<Void> implements Chann
     }
 
     /**
+     * 这里！！！
+     *
      * Creates a new instance.
      *
      * @param channel

@@ -20,6 +20,8 @@ import java.util.concurrent.TimeUnit;
 
 
 /**
+ * netty对jdk Future的扩展
+ *
  * The result of an asynchronous operation.
  */
 @SuppressWarnings("ClassNameSameAsAncestorName")

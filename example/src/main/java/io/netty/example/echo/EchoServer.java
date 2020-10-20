@@ -56,7 +56,8 @@ public final class EchoServer {
 
             //启动器
             ServerBootstrap b = new ServerBootstrap();
-            b.group(bossGroup, workerGroup)
+            //parentGroup childGroup
+            b.group(bossGroup, workerGroup)  //Reactor 模式的 mainReactor,Reactor 模式的 subReactor
              .channel(NioServerSocketChannel.class)  //通过反射创建channel
              .option(ChannelOption.SO_BACKLOG, 100)
              .handler(new LoggingHandler(LogLevel.INFO))

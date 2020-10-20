@@ -55,11 +55,11 @@ public abstract class SingleThreadEventExecutor extends AbstractScheduledEventEx
     private static final InternalLogger logger =
             InternalLoggerFactory.getInstance(SingleThreadEventExecutor.class);
 
-    private static final int ST_NOT_STARTED = 1;
-    private static final int ST_STARTED = 2;
-    private static final int ST_SHUTTING_DOWN = 3;
-    private static final int ST_SHUTDOWN = 4;
-    private static final int ST_TERMINATED = 5;
+    private static final int ST_NOT_STARTED = 1;    //没有启动
+    private static final int ST_STARTED = 2;        //启动
+    private static final int ST_SHUTTING_DOWN = 3;  //正在关闭
+    private static final int ST_SHUTDOWN = 4;       //关闭
+    private static final int ST_TERMINATED = 5;     //终止
 
     private static final Runnable NOOP_TASK = new Runnable() {
         @Override

@@ -332,6 +332,7 @@ public abstract class AbstractBootstrap<B extends AbstractBootstrap<B, C>, C ext
         }
 
         //把channel 注册到group上
+        //所谓的注册，就是从 bossGroup 中的 NioEventLoop 数组中选择了一个 NioEventLoop 对象去执行指定 Channel 的注册工作
         ChannelFuture regFuture = config().group().register(channel);
         if (regFuture.cause() != null) {
             if (channel.isRegistered()) {

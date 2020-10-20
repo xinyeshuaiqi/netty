@@ -448,7 +448,7 @@ public abstract class AbstractChannel extends DefaultAttributeMap implements Cha
         public final SocketAddress remoteAddress() {
             return remoteAddress0();
         }
-
+        //注册逻辑
         @Override
         public final void register(EventLoop eventLoop, final ChannelPromise promise) {
             ObjectUtil.checkNotNull(eventLoop, "eventLoop");
@@ -465,9 +465,10 @@ public abstract class AbstractChannel extends DefaultAttributeMap implements Cha
             AbstractChannel.this.eventLoop = eventLoop;
 
             if (eventLoop.inEventLoop()) {
+                //
                 register0(promise);
             } else {
-                try {
+                try { //异步注册
                     eventLoop.execute(new Runnable() {
                         @Override
                         public void run() {
@@ -493,6 +494,8 @@ public abstract class AbstractChannel extends DefaultAttributeMap implements Cha
                     return;
                 }
                 boolean firstRegistration = neverRegistered;
+
+                // 将channel注册到NioEventLoop的Selector中 真正的注册
                 doRegister();
                 neverRegistered = false;
                 registered = true;

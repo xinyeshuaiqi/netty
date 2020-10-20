@@ -16,11 +16,16 @@
 package io.netty.util.concurrent;
 
 /**
+ * 可写的Future
+ * 在setSuccess和setFailure方法中会通知注册到其上的监听者
+ *
  * Special {@link Future} which is writable.
  */
 public interface Promise<V> extends Future<V> {
 
     /**
+     * 标记异步操作结果为成功，如果已被设置（不管成功还是失败）则抛出异常IllegalStateException
+     *
      * Marks this future as a success and notifies all
      * listeners.
      *
